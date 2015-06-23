@@ -1,4 +1,4 @@
-import {Timeline} from './Timeline';
+import {Handler} from './Handler';
 // In development server,
 // we need to export the symbol to the window.
-global.Timeline = Timeline;
+global.Handler = React.createFactory(Handler);
