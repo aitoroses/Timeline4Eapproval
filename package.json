@@ -27,7 +27,6 @@
     "karma-webpack": "^1.5.0",
     "mocha": "^2.2.4",
     "node-libs-browser": "^0.5.2",
-    "proxy-middleware": "^0.13.0",
     "react": "^0.13.2",
     "react-hot-loader": "^1.2.7",
     "react-mixin": "^1.2.2",
