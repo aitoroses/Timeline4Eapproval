@@ -1,2 +1,2 @@
-import {Handler} from './Handler';
+import Handler from './components/Timeline';
 export default React.createFactory(Handler);
