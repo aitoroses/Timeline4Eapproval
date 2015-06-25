@@ -1,12 +1,11 @@
 import Radium from 'radium';
-
-import Sidebar from './Sidebar';
-
 import c from './color';
 import {p} from './util';
 
-import atom from '../lib/state';
+import Sidebar from './Sidebar';
+import MainView from './MainView';
 
+import atom from '../lib/state';
 
 var styles = {
   base: {
@@ -32,6 +31,7 @@ class Timeline extends atom.Component {
     return (
       <div style={styles.base}>
         <Sidebar />
+        <MainView />
       </div>
     )
   }

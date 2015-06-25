@@ -34,12 +34,21 @@ class StreamStore {
   }
 
   getActiveStream() {
-    return getStreams()[this.getActive()]
+    return this.getStreams()[this.getActive()]
   }
 
   isActive(streamIndex) {
     var active = this.getActive();
     return streamIndex == active;
+  }
+
+  findStream(id) {
+    var streams = this.getStreams();
+    for (var i = 0; i < streams.length; i++) {
+      if (streams[i].label == id) {
+        return i;
+      }
+    }
   }
 }
 
