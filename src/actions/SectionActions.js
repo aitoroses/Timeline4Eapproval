@@ -3,7 +3,7 @@ import {store} from '../stores/SectionStore';
 class SectionActions {
   setActive(id, resolve) {
     this.set('active', id);
-    resolve();
+    resolve(id);
   }
 }
 

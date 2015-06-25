@@ -2,15 +2,18 @@ import Radium from 'radium';
 import c from './color';
 import {p, p_rel} from './util';
 
+import {store as SectionStore} from '../stores/SectionStore';
 import {store} from '../stores/StreamStore';
 import {actions} from '../actions/StreamActions';
+
+import OpacityHelper from './OpacityHelper';
 
 @Radium
 class Streams extends React.Component {
 
   style = {
     base: {
-      padding: 20
+      padding: 20,
     },
     title: {
       marginBottom: 12
@@ -53,10 +56,12 @@ class Streams extends React.Component {
     var style = this.style;
     var coll = store.getStreams();
     return (
-      <div style={style.base}>
+      <div style={[style.base, {opacity: this.state.opacity}]}>
         <div className="streams-title" style={style.title}>STREAMS</div>
         <div className="stream-group">
-          {coll.map(this.renderStream.bind(this))}
+          <OpacityHelper changer={SectionStore.getActive()} duration={0.5}>
+            {coll.map(this.renderStream.bind(this))}
+          </OpacityHelper>
         </div>
       </div>
     )

@@ -23,6 +23,7 @@ var styles = {
     height: '100%',
     width: p(SIDEBAR_WIDTH),
     transition: 'background 0.3s ease',
+    'userSelect': 'none'
   },
 
   left: {
