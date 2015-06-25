@@ -1,0 +1,66 @@
+import Radium from 'radium';
+import c from './color';
+import {p, p_rel} from './util';
+
+import {store} from '../stores/StreamStore';
+import {actions} from '../actions/StreamActions';
+
+@Radium
+class Streams extends React.Component {
+
+  style = {
+    base: {
+      padding: 20
+    },
+    title: {
+      marginBottom: 12
+    },
+    streams: {
+      marginBottom: 5,
+      fontSize: 12,
+      color: "#7B8492",
+      transition: "color .2s ease",
+      cursor: "pointer",
+      ':hover': {
+        color: "#959EAD",
+      }
+    },
+    streamActive: {
+      marginBottom: 5,
+      fontSize: 12,
+      color: "#FFFFFF",
+      ':hover': {
+        color: "#FFFFFF",
+      }
+    }
+  }
+
+  renderStream(stream, index) {
+    var streams = store.getStreams();
+    var isActive = store.isActive(index);
+    return (
+      <div
+        key={index}
+        style={[this.style.streams, isActive && this.style.streamActive]}
+        onClick={actions.setActive.bind(null, index)}
+        className="stream-item">
+        {'# ' + stream.label}
+      </div>
+    )
+  }
+
+  render() {
+    var style = this.style;
+    var coll = store.getStreams();
+    return (
+      <div style={style.base}>
+        <div className="streams-title" style={style.title}>STREAMS</div>
+        <div className="stream-group">
+          {coll.map(this.renderStream.bind(this))}
+        </div>
+      </div>
+    )
+  }
+}
+
+export default Streams;

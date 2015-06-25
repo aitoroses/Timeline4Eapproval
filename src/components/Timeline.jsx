@@ -2,21 +2,19 @@ import Radium from 'radium';
 
 import Sidebar from './Sidebar';
 
-export const WHITE = "#FFFFFF"
-export const LIGHT_GRAY = "#F3F4F6";
-export const LIGHT_BLUE = "#455161";
-export const MEDIUM_BLUE = "#3D4959";
-export const DARK_BLUE = "#2F3847";
-export const BASE_GREEN = "#33DABE";
+import c from './color';
+import {p} from './util';
+
+import atom from '../lib/state';
 
 
 var styles = {
   base: {
-    background: LIGHT_GRAY,
+    background: c.LIGHT_GRAY,
     border: 0,
     color: 'white',
     height: '100%',
-    width: '100%',
+    width: p(100),
     // transition: 'background 0.3s ease',
     //
     // ':hover': {
@@ -27,8 +25,10 @@ var styles = {
 
 // Main App Handler
 @Radium
-class Timeline extends React.Component {
+class Timeline extends atom.Component {
   render() {
+    var sections = this.state.sections;
+    var streams = this.state.streams;
     return (
       <div style={styles.base}>
         <Sidebar />
