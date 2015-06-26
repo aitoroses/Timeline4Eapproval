@@ -30,6 +30,13 @@ app.use(/^.*update\.(json|js)$/, function(req, res) {
   .pipe(res);
 });
 
+// Font assets
+app.use(/^.*\.(woff|woff2|ttf|eot|svg)$/, function(req, res) {
+  var url = "http://localhost:8081/lib" + req.baseUrl
+  request(url)
+  .pipe(res);
+});
+
 // Server proxying
 app.use('/*', function(req, res) {
   var url = "http://localhost:8081" + req.baseUrl

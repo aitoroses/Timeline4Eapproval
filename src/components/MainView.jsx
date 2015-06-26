@@ -2,10 +2,11 @@ import Radium from 'radium';
 import c from './color';
 import {p, p_rel} from './util';
 
+import SearchBar from './SearchBar'
+
 var styles = {
   base: {
     background: c.LIGHT_GRAY,
-    border: 0,
     height: '100%',
     color: "black",
     width: p(80),
@@ -18,7 +19,11 @@ var styles = {
 class MainView extends React.Component {
   render() {
     return (
-      <div style={[styles.base]}>Main View</div>
+      <div id="mainview" style={[styles.base]}>
+
+       <SearchBar />
+
+      </div>
     )
   }
 }

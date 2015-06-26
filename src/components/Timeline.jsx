@@ -1,3 +1,6 @@
+// Stylesheets
+require('font-awesome/css/font-awesome.css')
+
 import Radium from 'radium';
 import c from './color';
 import {p} from './util';

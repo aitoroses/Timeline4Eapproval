@@ -47,13 +47,20 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.(js|jsx)$/, loaders: ['react-hot', 'babel?stage=0'], exclude: /node_modules/ },
+      { test: /\.css$/, loaders: ['style', 'css'] },
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&minetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" }
     ],
     noParse: [/* Regex */]
   },
 
   resolve: {
     root: [path.resolve("node_modules")],
-    extensions: ['', '.js', '.jsx',],
+    extensions: [
+      '', '.js', '.jsx',
+      '.css',
+      '.woff', '.woff2', '.ttf', '.eot', '.svg'
+    ],
     alias: {}
   },
 
