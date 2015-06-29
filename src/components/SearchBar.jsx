@@ -14,7 +14,12 @@ var headerStyle = {
     position: 'relative',
     background: "white",
     height: HEADER_HEIGHT,
-    width: '100%'
+    width: '100%',
+    transition: 'all .3s ease',
+    boxShadow: '0 0 3px rgba(0, 0, 0, 0.15)',
+    ':hover': {
+      boxShadow: '0 0 10px rgba(0, 0, 0, 0.15)',
+    }
   },
   logo: {
     height: LOGO_HEIGHT,

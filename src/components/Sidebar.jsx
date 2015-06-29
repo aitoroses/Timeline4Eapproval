@@ -23,7 +23,7 @@ var styles = {
     height: '100%',
     width: p(SIDEBAR_WIDTH),
     transition: 'background 0.3s ease',
-    'userSelect': 'none'
+    'userSelect': 'none',
   },
 
   left: {
@@ -36,6 +36,7 @@ var styles = {
     left: p_rel(OU_BAR_WIDTH, SIDEBAR_WIDTH),
     width: p_rel(STREAMS_WIDTH, SIDEBAR_WIDTH),
     boxShadow: 'inset 5px 0px 10px -9px black',
+    borderRight: `2px solid ${c.LIGHTER_BLUE}`,
     ':hover': {
       background: c.DARK_BLUE
     }
@@ -46,8 +47,8 @@ var styles = {
     height: p_rel(OU_BAR_WIDTH, SIDEBAR_WIDTH),
     lineHeight: p_rel(OU_BAR_WIDTH, SIDEBAR_WIDTH),
     textAlign: 'center',
+    fontSize: 12,
     transition: 'background 0.3s ease',
-
     ':hover': {
       background: c.LIGHTER_BLUE
     }
