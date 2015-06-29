@@ -1,12 +1,18 @@
 import Radium from 'radium';
 import c from './color';
-import {p, p_rel} from './util';
+import {p, p_rel, size} from './util';
 
 import EventsHeader from './EventsHeader';
 
+import {HEADER_HEIGHT} from './SearchBar';
+
+/* The total height of the
+ * main view it's the entire viewport less
+ * the SearchBar
+ */
 var styles = {
   base: {
-    height: '100%',
+    height: size.height - HEADER_HEIGHT,
     padding: 20
   }
 }

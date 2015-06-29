@@ -76,6 +76,57 @@ class Switch extends React.Component {
 }
 
 @Radium
+class Slider extends React.Component {
+
+  static propTypes = {
+    max: PropTypes.number.isRequired
+  }
+
+  style = {
+    base: {
+      width: 150,
+      height: 50,
+      border: '1px solid black'
+    },
+    line: {
+      stroke: c.MEDIUM_GRAY,
+      strokeWidth: 2
+    },
+    circle: {
+      r: 5,
+      stroke: "black",
+      strokeWidth: 3,
+      fill: "red",
+      transition: 'all .3s ease',
+      ':hover': {
+        r: 10,
+      }
+    }
+  }
+
+  render() {
+    var middle = this.style.base.height / 2;
+    return (
+      <div className="slider" style={[this.style.base]}>
+        {/* SVG Slider */}
+        <svg width={this.style.base.width} height={this.style.base.height}>
+          <line
+            x1={0}
+            y1={middle}
+            x2={this.style.base.width}
+            y2={middle}
+            style={this.style.line} />
+          <circle
+            cx={50}
+            cy={middle}
+            style={this.style.circle} />
+        </svg>
+      </div>
+    )
+  }
+}
+
+@Radium
 class EventsHeader extends React.Component {
 
   render() {
@@ -86,14 +137,13 @@ class EventsHeader extends React.Component {
 
         <SwitchGroup
           onActiveChange={actions.setTimelineFilter}
-          active={store.getActiveFilter()}
-        >
+          active={store.getActiveFilter()}>
           <Switch label="DAYS" />
           <Switch label="MONTHS" />
           <Switch label="YEARS" />
         </SwitchGroup>
 
-        {/*<Slider max={30} /> */}
+        <Slider max={30} />
 
       </div>
     )

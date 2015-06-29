@@ -4,7 +4,7 @@ import c from './color';
 import CustomizableSearchBar from './CustomizableSearchBar';
 
 // CONSTANTS
-const HEADER_HEIGHT = 50;
+export const HEADER_HEIGHT = 50;
 const LOGO_HEIGHT = 20;
 const SEARCH_WIDTH = 300;
 const SEARCH_HEIGHT = HEADER_HEIGHT / 2;
@@ -53,4 +53,4 @@ class SearchHeader extends React.Component {
   }
 }
 
-export default SearchHeader
+export default SearchHeader;
