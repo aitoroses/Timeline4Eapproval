@@ -7,6 +7,7 @@ import {store} from '../stores/StreamStore';
 import {actions} from '../actions/StreamActions';
 
 import OpacityHelper from './OpacityHelper';
+import CustomizableSearchBar from './CustomizableSearchBar';
 
 @Radium
 class Streams extends React.Component {
@@ -35,6 +36,35 @@ class Streams extends React.Component {
       ':hover': {
         color: "#FFFFFF",
       }
+    },
+    divider: {
+      background: c.DARK_BLUE,
+      margin: '20px auto',
+      height: 2,
+      width: 120
+    },
+    addMore: {
+      background: c.DARK_BLUE,
+      margin: 'auto',
+      height: 20,
+      width: 135,
+      color: 'white',
+      position: "relative",
+      top: 40,
+      left: -3,
+      fontSize: 12,
+      lineHeight: 20 + 'px',
+      textAlign: 'center',
+      borderRadius: 2,
+      transition: 'background .3s ease',
+      ':hover': {
+        background: c.LIGHT_BLUE,
+      }
+    },
+    addMoreIcon: {
+      position: "absolute",
+      lineHeight: 20 + 'px',
+      left: 10
     }
   }
 
@@ -63,6 +93,27 @@ class Streams extends React.Component {
             {coll.map(this.renderStream.bind(this))}
           </OpacityHelper>
         </div>
+
+        <div style={[style.divider]}></div>
+
+        <CustomizableSearchBar
+          id="streams-search"
+          icon="search"
+          placeholder="Search"
+          height={20}
+          width={120}
+          background={c.DARK_BLUE}
+          color="white"
+          onChange={(e) => {
+            actions.setFilter(e.target.value);
+          }}
+          />
+
+        <div className="add-more" style={[style.addMore]}>
+          <i className="fa fa-plus-circle" style={[style.addMoreIcon]}></i>
+          {'Add more'}
+        </div>
+
       </div>
     )
   }

@@ -8,6 +8,7 @@ class StreamStore {
 
   state = {
     active: 0,
+    filter: '',
     data: {
       1: [
         {label: "News"},
@@ -26,7 +27,8 @@ class StreamStore {
 
   getStreams() {
     var activeSection = SectionStore.getActive();
-    return this.state.data[activeSection.id];
+    var streams = this.state.data[activeSection.id];
+    return streams.filter(s => s.label.match(new RegExp(this.state.filter, 'gi')))
   }
 
   getActive() {

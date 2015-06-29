@@ -22,6 +22,11 @@ class StreamActions {
       }
     }
   }
+
+  setFilter(filter, resolve) {
+    this.set('filter', filter);
+    resolve(filter);
+  }
 }
 
 export var actions = store.createActions(StreamActions);

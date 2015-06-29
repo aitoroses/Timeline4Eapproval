@@ -8,9 +8,13 @@ class SectionActions {
   setActive(id, resolve) {
     // When the section changes we should match an stream of the new section.
     // Find one matching
-    var name = StreamStore.getActiveStream().label;
+    var stream = StreamStore.getActiveStream();
     setTimeout(() => {
-      StreamActions.setActive(name);
+      if (stream) {
+        StreamActions.setActive(stream.label);
+      } else {
+        StreamActions.setActive(0);
+      }
     });
 
     this.set('active', id);
