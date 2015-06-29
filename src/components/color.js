@@ -1,5 +1,6 @@
 export default {
   WHITE: "#FFFFFF",
+  DARK_GRAY: "#707882",
   LIGHT_GRAY: "#F3F4F6",
   MEDIUM_GRAY: "#7B8492",
   LIGHTER_BLUE: "#59697E",

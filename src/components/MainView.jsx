@@ -2,7 +2,8 @@ import Radium from 'radium';
 import c from './color';
 import {p, p_rel} from './util';
 
-import SearchBar from './SearchBar'
+import SearchBar from './SearchBar';
+import EventsView from './EventsView';
 
 var styles = {
   base: {
@@ -20,9 +21,8 @@ class MainView extends React.Component {
   render() {
     return (
       <div id="mainview" style={[styles.base]}>
-
-       <SearchBar />
-
+        <SearchBar />
+        <EventsView />
       </div>
     )
   }

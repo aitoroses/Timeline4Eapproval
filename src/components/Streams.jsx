@@ -69,6 +69,10 @@ class Streams extends React.Component {
     }
   }
 
+  blurInput() {
+    actions.toggleEditMode();
+  }
+
   renderStream(stream, index) {
     var streams = store.getStreams();
     var isActive = store.isActive(index);
@@ -81,6 +85,39 @@ class Streams extends React.Component {
         {'# ' + stream.label}
       </div>
     )
+  }
+
+  renderAddMore() {
+    var style = this.style;
+    if (!store.isEditMode()) {
+      return (
+        <div className="add-more" style={[style.addMore]} onClick={actions.toggleEditMode}>
+          <i className="fa fa-plus" style={[style.addMoreIcon]}></i>
+          {'Add more'}
+        </div>
+      )
+    } else {
+      return (
+        <div className="add-more" style={[style.addMore]}>
+          <i className="fa fa-keyboard-o" style={[style.addMoreIcon]}></i>
+          <input placeholder="Type in.." style={{
+            background: 'transparent',
+            border: 'none',
+            outline: 'none',
+            position: 'relative',
+            left: 30,
+            padding: 0
+          }}
+          onBlur={actions.toggleEditMode}
+          onKeyPress={(e) => {
+            if (event.keyCode === 13) { // Enter key
+              event.preventDefault();
+              actions.addNewStream(e.target.value);
+            }
+          }} />
+        </div>
+      )
+    }
   }
 
   render() {
@@ -110,10 +147,8 @@ class Streams extends React.Component {
           }}
           />
 
-        <div className="add-more" style={[style.addMore]}>
-          <i className="fa fa-plus" style={[style.addMoreIcon]}></i>
-          {'Add more'}
-        </div>
+        {this.renderAddMore()}
+
 
       </div>
     )

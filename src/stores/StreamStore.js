@@ -9,6 +9,7 @@ class StreamStore {
   state = {
     active: 0,
     filter: '',
+    editMode: false,
     data: {
       1: [
         {label: "News"},
@@ -25,9 +26,14 @@ class StreamStore {
     }
   }
 
-  getStreams() {
+  getRawStreams() {
     var activeSection = SectionStore.getActive();
     var streams = this.state.data[activeSection.id];
+    return streams;
+  }
+
+  getStreams() {
+    var streams = this.getRawStreams();
     return streams.filter(s => s.label.match(new RegExp(this.state.filter, 'gi')))
   }
 
@@ -51,6 +57,10 @@ class StreamStore {
         return i;
       }
     }
+  }
+
+  isEditMode() {
+    return this.state.editMode;
   }
 }
 

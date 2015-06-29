@@ -27,6 +27,16 @@ class StreamActions {
     this.set('filter', filter);
     resolve(filter);
   }
+
+  toggleEditMode() {
+    this.set('editMode', !this.editMode);
+  }
+
+  addNewStream(stream, resolve) {
+    var streams = store.getRawStreams();
+    streams.push({label: stream});
+    resolve(stream);
+  }
 }
 
 export var actions = store.createActions(StreamActions);
