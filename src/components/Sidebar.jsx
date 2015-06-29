@@ -23,7 +23,9 @@ var styles = {
     height: '100%',
     width: p(SIDEBAR_WIDTH),
     transition: 'background 0.3s ease',
-    'userSelect': 'none'
+    'userSelect': 'none',
+    boxShadow: '0px 0 8px 1px rgba(0, 0, 0, 0.60)',
+    zIndex: 10
   },
 
   left: {
@@ -46,6 +48,7 @@ var styles = {
     height: p_rel(OU_BAR_WIDTH, SIDEBAR_WIDTH),
     lineHeight: p_rel(OU_BAR_WIDTH, SIDEBAR_WIDTH),
     textAlign: 'center',
+    fontSize: 12,
     transition: 'background 0.3s ease',
 
     ':hover': {
