@@ -57,6 +57,7 @@ class Streams extends React.Component {
       textAlign: 'center',
       borderRadius: 2,
       transition: 'background .3s ease',
+      cursor: 'pointer',
       ':hover': {
         background: c.LIGHT_BLUE,
       }
@@ -110,7 +111,7 @@ class Streams extends React.Component {
           />
 
         <div className="add-more" style={[style.addMore]}>
-          <i className="fa fa-plus-circle" style={[style.addMoreIcon]}></i>
+          <i className="fa fa-plus" style={[style.addMoreIcon]}></i>
           {'Add more'}
         </div>
 
