@@ -6,11 +6,16 @@ class TimelineStore {
   }
 
   state = {
-    timelineFilter: 0
+    timelineFilter: 0,
+    sliderPosition: 50
   }
 
   getActiveFilter() {
     return this.state.timelineFilter || 0;
+  }
+
+  getSliderPosition() {
+    return this.state.sliderPosition;
   }
 
 }

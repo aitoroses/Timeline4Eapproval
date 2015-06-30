@@ -9,4 +9,5 @@ export default {
   DARK_BLUE: "#2F3847",
   LIGHT_GREEN: "#00F3D6",
   BASE_GREEN: "#33DABE",
+  SLIDER_BLUE: "#0091E2"
 }

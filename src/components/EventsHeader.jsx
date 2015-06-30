@@ -78,6 +78,11 @@ class Switch extends React.Component {
 @Radium
 class Slider extends React.Component {
 
+  constructor() {
+    super()
+    this.handleDrag = this.handleDrag.bind(this)
+  }
+
   static propTypes = {
     max: PropTypes.number.isRequired
   }
@@ -86,40 +91,107 @@ class Slider extends React.Component {
     base: {
       width: 150,
       height: 50,
-      border: '1px solid black'
+      position: 'relative'
     },
-    line: {
+    line1: {
+      stroke: c.SLIDER_BLUE,
+      strokeWidth: 2
+    },
+    line2: {
       stroke: c.MEDIUM_GRAY,
       strokeWidth: 2
     },
     circle: {
       r: 5,
-      stroke: "black",
-      strokeWidth: 3,
-      fill: "red",
-      transition: 'all .3s ease',
-      ':hover': {
-        r: 10,
-      }
+      cursor: 'pointer',
+      fill: c.SLIDER_BLUE,
+      transition: 'all .3s ease'
+    },
+    draggable: {
+      height: 10,
+      width: 10,
+      position: 'absolute',
     }
   }
 
+  state = {
+    position: 50,
+    dragging: false
+  }
+
+  handleDrag(e) {
+    var handler = $(React.findDOMNode(this.refs.handler));
+    var offsetX = e.clientX - handler.offset().left;
+    var sliderAmount = offsetX / this.style.base.width * 100;
+    var newPos = this.state.position + sliderAmount - 2.5;
+    console.log(newPos)
+    if (newPos > 0 && newPos <=100) {
+      this.setState({
+        position: newPos
+      })
+    }
+  }
+
+  handleDragEnter() {
+    this.setState({
+      dragging: true
+    })
+    $(document).mousemove(this.handleDrag)
+  }
+
+  handleDragEnd() {
+    this.setState({
+      dragging: false
+    })
+
+    $(document).off('mousemove', this.handleDrag)
+
+    // Finally set the position on the Atom
+    actions.setSliderPosition(this.state.position)
+  }
+
   render() {
+    var hovered = this.state.dragging
+
+    var s = this.style;
     var middle = this.style.base.height / 2;
+    var sliderPos = this.state.position;
+
+    var sliderPx = sliderPos/100 * s.base.width;
+
+    var line1 = {
+      x1: 0, y1: middle,
+      x2: sliderPx, y2: middle
+    }
+
+    var line2 = {
+      x1: sliderPx, y1: middle,
+      x2: s.base.width, y2: middle
+    }
+
     return (
       <div className="slider" style={[this.style.base]}>
+        {/* Movement handle */}
+        <div ref="handler"
+          key="handle"
+          onMouseDown={this.handleDragEnter.bind(this)}
+          onMouseUp={this.handleDragEnd.bind(this)}
+          style={[s.draggable, {
+            left: sliderPx - s.draggable.width / 2,
+            top: middle - s.draggable.height / 2
+          }]}/>
         {/* SVG Slider */}
-        <svg width={this.style.base.width} height={this.style.base.height}>
+        <svg width={s.base.width} height={s.base.height}>
           <line
-            x1={0}
-            y1={middle}
-            x2={this.style.base.width}
-            y2={middle}
-            style={this.style.line} />
+            {...line1}
+            style={s.line1} />
+          <line
+            {...line2}
+            style={s.line2} />
           <circle
-            cx={50}
+            cx={sliderPx}
             cy={middle}
-            style={this.style.circle} />
+            style={[s.circle, {r: hovered ? 10 : 5}]} />
         </svg>
       </div>
     )
