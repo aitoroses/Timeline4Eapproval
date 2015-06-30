@@ -90,7 +90,7 @@ class Slider extends React.Component {
   style = {
     base: {
       width: 150,
-      height: 50,
+      height: 100,
       position: 'relative'
     },
     line1: {
@@ -105,7 +105,7 @@ class Slider extends React.Component {
       r: 5,
       cursor: 'pointer',
       fill: c.SLIDER_BLUE,
-      transition: 'all .3s ease'
+      transition: 'r .3s ease'
     },
     draggable: {
       height: 10,
@@ -124,7 +124,6 @@ class Slider extends React.Component {
     var offsetX = e.clientX - handler.offset().left;
     var sliderAmount = offsetX / this.style.base.width * 100;
     var newPos = this.state.position + sliderAmount - 2.5;
-    console.log(newPos)
     if (newPos > 0 && newPos <=100) {
       this.setState({
         position: newPos
@@ -188,6 +187,13 @@ class Slider extends React.Component {
           <line
             {...line2}
             style={s.line2} />
+
+          <circle
+            cx={sliderPx}
+            cy={25}
+            style={[s.circle, {r: 10}]}/>
+          <text x={sliderPx} y={30} fill="white" textAnchor="middle" fontSize="10px">{store.getActualFilterValue()}</text>
+
           <circle
             cx={sliderPx}
             cy={middle}
