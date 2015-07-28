@@ -22,7 +22,7 @@ class CustomizableSearchBar extends React.Component {
     var HEIGHT = this.props.height;
     var BACKGROUND = this.props.background;
     var COLOR = this.props.color;
-
+    
     return {
       search: {
         left: 30,
@@ -30,7 +30,7 @@ class CustomizableSearchBar extends React.Component {
         height: HEIGHT,
         position: 'absolute',
         background: BACKGROUND,
-        top: this.props.parentHeight ? (this.props.parentHeight - HEIGHT) / 2 : null,
+        top: this.props.parentHeight ? (this.props.parentHeight - HEIGHT) / 2 : "inherit",
         lineHeight: HEIGHT + 'px',
         zIndex: 1
       },
@@ -90,7 +90,7 @@ class CustomizableSearchBar extends React.Component {
             }
           }}
         />
-      <div style={[style.searchBorder, {left: -BAR_PADDING}]}></div>
+        <div style={[style.searchBorder, {left: -BAR_PADDING}]}></div>
         <div style={[style.searchBorder, {right: -BAR_PADDING}]}></div>
         <i className={"fa " + "fa-" + this.props.icon} style={[style.icon]}></i>
         <input onChange={this.props.onChange} placeholder={this.props.placeholder} type="text" style={[style.input]} />

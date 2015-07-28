@@ -129,6 +129,7 @@ class Slider extends React.Component {
         position: newPos
       })
     }
+    actions.setSliderPosition(newPos)
   }
 
   handleDragEnter() {

@@ -123,8 +123,9 @@ class Streams extends React.Component {
   render() {
     var style = this.style;
     var coll = store.getStreams();
+    var opacity = this.state.opacity || 1;
     return (
-      <div style={[style.base, {opacity: this.state.opacity}]}>
+      <div style={[style.base, {opacity: opacity}]}>
         <div className="streams-title" style={style.title}>STREAMS</div>
         <div className="stream-group">
           <OpacityHelper changer={SectionStore.getActive()} duration={0.5}>

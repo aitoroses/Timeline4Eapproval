@@ -18,7 +18,6 @@ var styles = {
   base: {
     position: "absolute",
     top: 0,
-    border: 0,
     color: 'white',
     height: '100%',
     width: p(SIDEBAR_WIDTH),
