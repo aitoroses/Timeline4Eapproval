@@ -16,8 +16,7 @@ const EVENTS_HEADER_HEIGHT = 100;
 var styles = {
   base: {
     height: size.height - HEADER_HEIGHT,
-    padding: 20,
-    overflowY: 'scroll'
+    padding: 20
   }
 }
 
