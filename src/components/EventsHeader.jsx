@@ -7,6 +7,8 @@ import {store} from '../stores/TimelineStore';
 
 var PropTypes = React.PropTypes
 
+const EVENTS_HEADER_HEIGHT = 100;
+
 var styles = {
   title: {
     display: 'inline-block',
@@ -208,9 +210,13 @@ class Slider extends React.Component {
 @Radium
 class EventsHeader extends React.Component {
 
+  static propTypes = {
+    height: React.PropTypes.any.isRequired
+  }
+
   render() {
     return (
-      <div id="eventsheader" style={[styles.base]}>
+      <div id="eventsheader" style={[styles.base, {height: this.props.height}]}>
 
         <div style={[styles.title]}>Timeline</div>
 

@@ -6,6 +6,14 @@ export function p_rel(val, relativeTo) {
   return (val / 100) * size.width * (relativeTo / 100) + 'px';
 }
 
+export function ph(val) {
+  return (val / 100) * size.height + 'px';
+}
+
+export function ph_rel(val, relativeTo) {
+  return (val / 100) * size.height * (relativeTo / size.height) + 'px';
+}
+
 export var size = {
   width: document.documentElement.clientWidth,
   height: document.documentElement.clientHeight
