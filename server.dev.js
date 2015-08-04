@@ -57,4 +57,6 @@ var server = new WebpackDevServer(webpack(config), {
 
 // ------ run the two servers -------
 server.listen(8081, "localhost", function() {});
-app.listen(8080);
+app.listen(8080, function() {
+  console.log("Server is listening on port 8080")
+});
