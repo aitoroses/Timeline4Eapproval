@@ -51,6 +51,11 @@ class EventsContainer extends React.Component {
           <div style={{
               marginBottom: 10
             }} key={i} className="event-group">
+            {/* Circle ICON */}
+            <svg style={{position: 'relative', left: 20, top: 60}} height="40" width="40">
+              <circle style={{fill: c.LIGHT_GREEN}} cx="20" cy="20" r="20" />
+            </svg>
+            <i style={{color: 'white', position:'relative', top: 49, right: 12, fontSize: '24px'}} className="fa fa-2x fa-tasks"/>
             {/* Triangle */}
             <div style={{position: 'absolute'} /* This will make non height component */}>
               <svg height="20" width="20" style={{
