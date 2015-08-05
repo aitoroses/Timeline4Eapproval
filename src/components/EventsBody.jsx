@@ -4,6 +4,9 @@ import {p, ph, p_rel, ph_rel, size} from './util';
 
 import VerticalTimelineBar from './VerticalTimelineBar';
 import EventsContainer from './EventsContainer';
+import OpacityHelper from './OpacityHelper';
+
+import {store} from '../stores/TimelineStore'
 
 var styles = {
   base: {
@@ -44,31 +47,36 @@ class EventsBody extends React.Component {
 
   render() {
 
+    var events = store.getEvents();
+
     var layoutStyle = {
       height: this.props.height,
       position: 'relative'
     }
 
     return (
-      <div id="eventsbody" style={[layoutStyle, styles.base]}>
-        <div style={{
-          position: 'absolute',
-          left: -10,
-          display: 'inline-block'
-          }}>
-          <VerticalTimelineBar height={this.state.timelineBarHeight} points={this.state.points} />
+      <OpacityHelper changer={this.props.height}>
+        <div id="eventsbody" style={[layoutStyle, styles.base]}>
+          <div style={{
+            position: 'absolute',
+            left: -10,
+            display: 'inline-block'
+            }}>
+            <VerticalTimelineBar height={this.state.timelineBarHeight} points={this.state.points} />
+          </div>
+          <div style={{
+            position: 'absolute',
+            top: 0,
+            paddingTop: 20,
+            paddingLeft: 20
+            }}>
+            <EventsContainer
+              heightChanged={this.updateTimeline.bind(this)}
+              pointsChanged={this.updatePoints.bind(this)}
+              events={events} />
+          </div>
         </div>
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          paddingTop: 20,
-          paddingLeft: 20
-          }}>
-          <EventsContainer
-            heightChanged={this.updateTimeline.bind(this)}
-            pointsChanged={this.updatePoints.bind(this)} />
-        </div>
-      </div>
+      </OpacityHelper>
     )
   }
 }

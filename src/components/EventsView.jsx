@@ -7,7 +7,7 @@ import EventsBody from './EventsBody';
 
 import {HEADER_HEIGHT} from './SearchBar';
 
-const EVENTS_HEADER_HEIGHT = 100;
+const EVENTS_HEADER_HEIGHT = 70;
 
 /* The total height of the
  * main view it's the entire viewport less

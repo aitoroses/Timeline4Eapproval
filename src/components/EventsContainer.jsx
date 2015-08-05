@@ -12,7 +12,8 @@ class EventsContainer extends React.Component {
 
   static propTypes = {
     heightChanged: React.PropTypes.func,
-    pointsChanged: React.PropTypes.func
+    pointsChanged: React.PropTypes.func,
+    events: React.PropTypes.array.isRequired
   }
 
   componentDidMount() {
@@ -41,68 +42,7 @@ class EventsContainer extends React.Component {
 
   render() {
 
-    var eventGroups = [
-      [{
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      },
-      {
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      }],
-      [{
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      },
-      {
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      }],
-      [{
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      },
-      {
-        title: "Max Mustermann approved as medical your event...",
-        subject: "Michel",
-        date: "2 hours ago",
-        kind: "Event",
-        description: `Congress in London from 26th JUNE 2015 <br>
-          We do this event in London because it's very important and invited many <br>
-          HCP of others VIP from the medical sector ...`,
-        actions: ["Preview", "More", "Share"]
-      }],
-    ]
+    var eventGroups = this.props.events;
 
     return (
       <div id="events-container" style={[styles.base]}>

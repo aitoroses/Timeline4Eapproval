@@ -93,7 +93,8 @@ class Slider extends React.Component {
     base: {
       width: 150,
       height: 100,
-      position: 'relative'
+      position: 'relative',
+      display: 'inline-block'
     },
     line1: {
       stroke: c.SLIDER_BLUE,
@@ -217,19 +218,29 @@ class EventsHeader extends React.Component {
   render() {
     return (
       <div id="eventsheader" style={[styles.base, {height: this.props.height}]}>
-
-        <div style={[styles.title]}>Timeline</div>
-
-        <SwitchGroup
-          onActiveChange={actions.setTimelineFilter}
-          active={store.getActiveFilter()}>
-          <Switch label="DAYS" />
-          <Switch label="MONTHS" />
-          <Switch label="YEARS" />
-        </SwitchGroup>
-
-        <Slider max={30} />
-
+        <div style={{
+            display: 'inline-block',
+            verticalAlign: 'top',
+            position: 'relative',
+            top: 20
+          }}>
+          <div style={[styles.title]}>Timeline</div>
+          <SwitchGroup
+            onActiveChange={actions.setTimelineFilter}
+            active={store.getActiveFilter()}>
+            <Switch label="DAYS" />
+            <Switch label="MONTHS" />
+            <Switch label="YEARS" />
+          </SwitchGroup>
+        </div>
+        <div style={{
+            marginLeft: 30,
+            display:'inline-block',
+            position: 'relative',
+            bottom: 15
+          }}>
+          <Slider max={30} />
+        </div>
       </div>
     )
   }
