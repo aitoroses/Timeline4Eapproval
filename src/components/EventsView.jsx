@@ -31,6 +31,7 @@ class EventsView extends React.Component {
       <div id="eventsview" style={[styles.base]}>
         <EventsHeader height={EVENTS_HEADER_HEIGHT}/>
         <EventsBody height={contentHeight - EVENTS_HEADER_HEIGHT}/>
+        {/*<EventsActions />*/}
       </div>
     )
   }

@@ -6,7 +6,8 @@ class VerticalTimelineBar extends React.Component {
   static VERTICAL_PADDING = 20
 
   static propTypes = {
-    height: React.PropTypes.number.isRequired
+    height: React.PropTypes.number.isRequired,
+    points: React.PropTypes.array.isRequired
   }
 
   getStyle() {
@@ -26,7 +27,7 @@ class VerticalTimelineBar extends React.Component {
   }
 
   getPoints() {
-    return [50, 100, 200]
+    return this.props.points || [];
   }
 
   renderCircle(y, radius = 10) {

@@ -9,10 +9,40 @@ var styles = {
 
 @Radium
 class EventsContainer extends React.Component {
+
+  static propTypes = {
+    heightChanged: React.PropTypes.func,
+    pointsChanged: React.PropTypes.func
+  }
+
+  componentDidMount() {
+    this.updateParent();
+  }
+
+  componentWillUpdate() {
+    this.updateParent()
+  }
+
+  updateParent() {
+    // Find DOM height, notify change
+    if (this.props.heightChanged) {
+      let height = $(React.findDOMNode(this)).height();
+      this.props.heightChanged(height);
+    }
+
+    if (this.props.pointsChanged) {
+      // Event points calculation
+      var eventGroups = $(React.findDOMNode(this)).children();
+      // Return points offset in the event plus aditional 20px offset
+      var points = _.map(eventGroups, (el) => {return el.offsetTop + 20});
+      this.props.pointsChanged(points);
+    }
+  }
+
   render() {
 
-    var events = [
-      {
+    var eventGroups = [
+      [{
         title: "Max Mustermann approved as medical your event...",
         subject: "Michel",
         date: "2 hours ago",
@@ -31,15 +61,75 @@ class EventsContainer extends React.Component {
           We do this event in London because it's very important and invited many <br>
           HCP of others VIP from the medical sector ...`,
         actions: ["Preview", "More", "Share"]
-      }
+      }],
+      [{
+        title: "Max Mustermann approved as medical your event...",
+        subject: "Michel",
+        date: "2 hours ago",
+        kind: "Event",
+        description: `Congress in London from 26th JUNE 2015 <br>
+          We do this event in London because it's very important and invited many <br>
+          HCP of others VIP from the medical sector ...`,
+        actions: ["Preview", "More", "Share"]
+      },
+      {
+        title: "Max Mustermann approved as medical your event...",
+        subject: "Michel",
+        date: "2 hours ago",
+        kind: "Event",
+        description: `Congress in London from 26th JUNE 2015 <br>
+          We do this event in London because it's very important and invited many <br>
+          HCP of others VIP from the medical sector ...`,
+        actions: ["Preview", "More", "Share"]
+      }],
+      [{
+        title: "Max Mustermann approved as medical your event...",
+        subject: "Michel",
+        date: "2 hours ago",
+        kind: "Event",
+        description: `Congress in London from 26th JUNE 2015 <br>
+          We do this event in London because it's very important and invited many <br>
+          HCP of others VIP from the medical sector ...`,
+        actions: ["Preview", "More", "Share"]
+      },
+      {
+        title: "Max Mustermann approved as medical your event...",
+        subject: "Michel",
+        date: "2 hours ago",
+        kind: "Event",
+        description: `Congress in London from 26th JUNE 2015 <br>
+          We do this event in London because it's very important and invited many <br>
+          HCP of others VIP from the medical sector ...`,
+        actions: ["Preview", "More", "Share"]
+      }],
     ]
 
     return (
       <div id="events-container" style={[styles.base]}>
-        {events.map((e, i) => {
-          var {actions, ...data} = e;
-          return <Event key={i} actions={actions} data={data}></Event>
-        })}
+        {/* Event groups */}
+        {eventGroups.map((group, i) =>
+          <div style={{
+              marginBottom: 10
+            }} key={i} className="event-group">
+            {/* Triangle */}
+            <div style={{position: 'absolute'} /* This will make non height component */}>
+              <svg height="20" width="20" style={{
+                  position: 'relative',
+                  top: 40,
+                  right: 20,
+                }}>
+                <polygon points="20,0 20,20 10,10" style={{
+                    fill: "white"
+                }} />
+              </svg>
+            </div>
+            {/* Events */}
+            {group.map((e, i) => {
+              var {actions, ...data} = e;
+              return <Event key={i} actions={actions} data={data}></Event>
+            })}
+          </div>
+        )}
       </div>
     )
   }
@@ -63,16 +153,16 @@ class Event extends React.Component {
     var actionStyle={
       display: 'inline-block',
       margin: "15px 60px 15px 5px",
-      color: c.DARK_BLUE,
+      color: c.MEDIUM_GRAY,
+      fontWeight: 200,
+      cursor: 'pointer',
       transition: 'color .3s',
       ':hover': {
-        color: c.MEDIUM_GRAY
+        color: 'black'
       }
     }
     return (
-      <div style={{
-          marginBottom: 10
-        }}>
+      <div>
         <EventContents {...this.props.data} />
         <div style={{
             backgroundColor: "white",
@@ -81,7 +171,7 @@ class Event extends React.Component {
           }}>
           <div style={{
               backgroundColor: "white",
-              borderTop: '1px solid black',
+              borderTop: `2px solid ${c.LIGHT_GRAY}`,
             }} />
           {this.props.actions.map((a, i) => {
             return (

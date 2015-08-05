@@ -19,6 +19,29 @@ class EventsBody extends React.Component {
     height: React.PropTypes.any.isRequired
   }
 
+  state = {
+    timelineBarHeight: 0,
+    points: []
+  }
+
+  updateTimeline(val) {
+    this.setState({
+      timelineBarHeight: val
+    });
+  }
+
+  updatePoints(points) {
+    this.setState({points})
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    return (
+      nextProps.height == this.props.height &&
+      nextState.timelineBarHeight == this.state.timelineBarHeight &&
+      nextState.points == this.state.points
+    ) ? true : false
+  }
+
   render() {
 
     var layoutStyle = {
@@ -33,7 +56,7 @@ class EventsBody extends React.Component {
           left: -10,
           display: 'inline-block'
           }}>
-          <VerticalTimelineBar height={this.props.height} />
+          <VerticalTimelineBar height={this.state.timelineBarHeight} points={this.state.points} />
         </div>
         <div style={{
           position: 'absolute',
@@ -41,7 +64,9 @@ class EventsBody extends React.Component {
           paddingTop: 20,
           paddingLeft: 20
           }}>
-          <EventsContainer />
+          <EventsContainer
+            heightChanged={this.updateTimeline.bind(this)}
+            pointsChanged={this.updatePoints.bind(this)} />
         </div>
       </div>
     )
