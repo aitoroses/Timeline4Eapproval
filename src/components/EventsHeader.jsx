@@ -111,8 +111,8 @@ class Slider extends React.Component {
       transition: 'r .3s ease'
     },
     draggable: {
-      height: 10,
-      width: 10,
+      height: 60,
+      width: 60,
       position: 'absolute',
     }
   }
@@ -126,7 +126,7 @@ class Slider extends React.Component {
     var handler = $(React.findDOMNode(this.refs.handler));
     var offsetX = e.clientX - handler.offset().left;
     var sliderAmount = offsetX / this.style.base.width * 100;
-    var newPos = this.state.position + sliderAmount - 2.5;
+    var newPos = this.state.position + sliderAmount - 20;
     if (newPos > 0 && newPos <=100) {
       this.setState({
         position: newPos
@@ -162,14 +162,16 @@ class Slider extends React.Component {
 
     var sliderPx = sliderPos/100 * s.base.width;
 
+    var xpos = x => x + 10
+
     var line1 = {
-      x1: 0, y1: middle,
-      x2: sliderPx, y2: middle
+      x1: xpos(0), y1: middle,
+      x2: xpos(sliderPx), y2: middle
     }
 
     var line2 = {
-      x1: sliderPx, y1: middle,
-      x2: s.base.width, y2: middle
+      x1: xpos(sliderPx), y1: middle,
+      x2: xpos(s.base.width), y2: middle
     }
 
     return (
@@ -180,11 +182,11 @@ class Slider extends React.Component {
           onMouseDown={this.handleDragEnter.bind(this)}
           onMouseUp={this.handleDragEnd.bind(this)}
           style={[s.draggable, {
-            left: sliderPx - s.draggable.width / 2,
+            left: xpos(sliderPx) - s.draggable.width / 2,
             top: middle - s.draggable.height / 2
           }]}/>
         {/* SVG Slider */}
-        <svg width={s.base.width} height={s.base.height}>
+        <svg width={xpos(xpos(s.base.width))} height={s.base.height}>
           <line
             {...line1}
             style={s.line1} />
@@ -193,13 +195,13 @@ class Slider extends React.Component {
             style={s.line2} />
 
           <circle
-            cx={sliderPx}
+            cx={xpos(sliderPx)}
             cy={25}
             style={[s.circle, {r: 10}]}/>
-          <text x={sliderPx} y={30} fill="white" textAnchor="middle" fontSize="10px">{store.getActualFilterValue()}</text>
+          <text x={xpos(sliderPx)} y={30} fill="white" textAnchor="middle" fontSize="10px">{store.getActualFilterValue()}</text>
 
           <circle
-            cx={sliderPx}
+            cx={xpos(sliderPx)}
             cy={middle}
             style={[s.circle, {r: hovered ? 10 : 5}]} />
         </svg>
