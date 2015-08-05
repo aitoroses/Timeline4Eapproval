@@ -22,11 +22,11 @@ class CustomizableSearchBar extends React.Component {
     var HEIGHT = this.props.height;
     var BACKGROUND = this.props.background;
     var COLOR = this.props.color;
-    
+
     return {
       search: {
         left: 30,
-        width: WIDTH,
+        width: WIDTH || '80%',
         height: HEIGHT,
         position: 'absolute',
         background: BACKGROUND,
@@ -45,7 +45,7 @@ class CustomizableSearchBar extends React.Component {
       input: {
         position: 'relative',
         height: HEIGHT,
-        width: WIDTH - HEIGHT,
+        width: WIDTH - HEIGHT || 'inherit',
         background: BACKGROUND,
         border: 0,
         zIndex: 1,

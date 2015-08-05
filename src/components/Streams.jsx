@@ -47,7 +47,6 @@ class Streams extends React.Component {
       background: c.DARK_BLUE,
       margin: 'auto',
       height: 20,
-      width: 135,
       color: 'white',
       position: "relative",
       top: 40,
@@ -135,18 +134,20 @@ class Streams extends React.Component {
 
         <div style={[style.divider]}></div>
 
-        <CustomizableSearchBar
-          id="streams-search"
-          icon="search"
-          placeholder="Search"
-          height={20}
-          width={120}
-          background={c.DARK_BLUE}
-          color="white"
-          onChange={(e) => {
-            actions.setFilter(e.target.value);
-          }}
-          />
+        <div style={{position: 'relative', width: '100%', right: '22px'}}>
+          <CustomizableSearchBar
+            id="streams-search"
+            icon="search"
+            placeholder="Search"
+            height={20}
+            background={c.DARK_BLUE}
+            color="white"
+            onChange={(e) => {
+              actions.setFilter(e.target.value);
+            }}
+            />
+        </div>
+
 
         {this.renderAddMore()}
 

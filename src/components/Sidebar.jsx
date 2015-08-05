@@ -93,7 +93,7 @@ class Sidebar extends React.Component {
           {this.renderButtons()}
         </div>
         <div key="right" style={[styles.base, styles.right]}>
-          <Streams streams={this.props.streams}/>
+          <Streams />
         </div>
       </div>
     )
